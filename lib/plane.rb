@@ -1,21 +1,17 @@
 require './lib/engine'
 
 class Plane
-  attr_reader :engines
-
   def initialize
-    @engines = Array.new(2) { Engine.new }
+    @engine1 = Engine.new
+    @engine2 = Engine.new
+    @body_weight = 1000
   end
 
-  def body_weight
-    1000
+  def total_weight
+    @body_weight + @engine1.weight + @engine2.weight
   end
 
-  def weight
-    engine_weight = @engines.inject(0) do |sum, engine|
-      sum + engine.core_weight + engine.propeller_weight
-    end
-
-    body_weight + engine_weight
+  def engines
+    [@engine1, @engine2]
   end
 end
